@@ -1,10 +1,11 @@
 """
-snake game home
+snake game
+tkinter is used here to provide the gui
 """
 import tkinter
 import random
 
-# the foundation
+# initilize
 TILE_SIZE = 25
 ROWS = 30
 COL = 30
@@ -19,23 +20,21 @@ class Tile:
         self.x = x
         self.y = y
 
-#to create the window
+# create game window
 window = tkinter.Tk()
 window.title("snake game")
 window.resizable(False,False)
 
-#draw the board
+# draw on gui
 canvas = tkinter.Canvas(window, background=bg_color, width=win_width, height=win_height, borderwidth=0, highlightthickness=0)
 canvas.pack() #applies the setting to the canva
 window.update() # updates the window information
 
-#center the window
+# set default window position
 win_w = window.winfo_width() #get the window dimensions
 win_h = window.winfo_height()
 scr_w = window.winfo_screenwidth() #get the screen dimensions
 scr_h = window.winfo_screenheight()
-
-print(f"{win_w}+{win_h}+{scr_w}+{scr_h}")
 
 win_x = int((scr_w/2)- (win_w/2))
 win_y = int((scr_h/2) -(win_h/2))
@@ -82,14 +81,12 @@ def move():
     snake.x+= vel_x*TILE_SIZE
     snake.y += vel_y*TILE_SIZE
 
-    #check if food is eaten
     if(snake.x == food.x and snake.y== food.y):
         snake_body.append(Tile(food.x, food.y))
 
         #remove and reset food
         food.x = random.randint(0, ROWS-1)*TILE_SIZE
         food.y = random.randint(0, COL-1)*TILE_SIZE
-    
 
     for i in range(len(snake_body)-1, -1, -1):
         tile = snake_body[i]
@@ -101,7 +98,7 @@ def move():
             tile.x = prev_tile.x
             tile.y = prev_tile.y
 
-#initilize the characters
+# create snake and food
 snake = Tile(5*TILE_SIZE, 5*TILE_SIZE)
 food = Tile(12*TILE_SIZE, 6*TILE_SIZE)
 
