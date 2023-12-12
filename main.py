@@ -7,8 +7,8 @@ import random
 
 # initilize
 TILE_SIZE = 25
-ROWS = 30
-COL = 30
+ROWS, COL = 30,30
+
 bg_color = "white"
 win_width = TILE_SIZE*ROWS #750 cause of the screen i'm using
 win_height = TILE_SIZE*COL
@@ -59,6 +59,7 @@ def draw():
 
     window.after(100, draw) #after 100ms, draw again
 
+
 #movement
 def changedir(e):
     global vel_x, vel_y
@@ -79,8 +80,11 @@ def changedir(e):
 def move():
     # snake movenment usign grid size
     global snake, vel_y,vel_x,food, snake_body
-    snake.x+= vel_x*TILE_SIZE
+    snake.x += vel_x*TILE_SIZE
     snake.y += vel_y*TILE_SIZE
+
+    if((snake.x >win_w or snake.x <0)or(snake.y>win_h or snake.y<0)):
+        quitGame()#should quit when snake is out of bounds
 
     if(snake.x == food.x and snake.y== food.y):
         snake_body.append(Tile(food.x, food.y))
@@ -98,6 +102,8 @@ def move():
             prev_tile = snake_body[i-1]
             tile.x = prev_tile.x
             tile.y = prev_tile.y
+def quitGame():
+    window.quit()
 
 # create snake and food
 snake = Tile(5*TILE_SIZE, 5*TILE_SIZE)
