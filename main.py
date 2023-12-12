@@ -77,6 +77,7 @@ def changedir(e):
        vel_y=0
 
 def move():
+    # snake movenment usign grid size
     global snake, vel_y,vel_x,food, snake_body
     snake.x+= vel_x*TILE_SIZE
     snake.y += vel_y*TILE_SIZE
