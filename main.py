@@ -7,7 +7,7 @@ import random
 
 # initilize
 TILE_SIZE = 25
-ROWS, COL = 30,30
+ROWS, COL = 40,40
 
 bg_color = "white"
 win_width = TILE_SIZE*ROWS #750 cause of the screen i'm using
@@ -84,7 +84,7 @@ def move():
     snake.y += vel_y*TILE_SIZE
 
     if((snake.x >win_w or snake.x <0)or(snake.y>win_h or snake.y<0)):
-        quitGame()#should quit when snake is out of bounds
+        quitGame()#should quit when snake is out of boundsgit 
 
     if(snake.x == food.x and snake.y== food.y):
         snake_body.append(Tile(food.x, food.y))
