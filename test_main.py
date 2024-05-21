@@ -1,5 +1,5 @@
 import unittest
-from snake_game import SnakeGame, Tile  # Assuming your game code is in a file named snake_game.py
+from main import SnakeGame, Tile, TILE_SIZE, win_width, win_height
 import tkinter as tk
 
 class TestSnakeGame(unittest.TestCase):
